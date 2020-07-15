@@ -1,5 +1,18 @@
 # Battleship Project
-Implementation by Juliet Shafto and Andrea Jackson.
+## About this Implementation
+Project from App Academy, implementation by Juliet Shafto and Andrea Jackson.
+
+## How to use this game:
+- Game will play using arguments passed in when calling `main.js`
+  - arguments should be the board height, the board width, and number of targets.
+  - ships take up a single square
+  - computer sets up a board, and player guesses until they hit every ship
+
+## Features left to implement:
+  - different sized ships
+  - limit on number of turns
+    - set a lose condition—right now game doesn't end until player has won
+  - two boards so you can play against computer or against other player
 
 ## Approach to the problem
 

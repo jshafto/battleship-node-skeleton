@@ -18,11 +18,5 @@ class HumanPlayer {
 
 }
 
-
-
-
-
-
-
 // export humanPlayer class
 module.exports.HumanPlayer = HumanPlayer;
