@@ -1,3 +1,6 @@
+# Battleship Project
+Implementation by Juliet Shafto and Andrea Jackson.
+
 ## Approach to the problem
 
 How do we go about designing the classes and methods needed for this game?
@@ -6,7 +9,7 @@ How do we go about designing the classes and methods needed for this game?
 
 We want to be able to implement a game called Battleship.
 
-We want our user, a human player, to be able to use the terminal to play the game. That means they need to know what the state of the game is, and how to tell the game what they want to do. 
+We want our user, a human player, to be able to use the terminal to play the game. That means they need to know what the state of the game is, and how to tell the game what they want to do.
 
 The state of the game can be represented by a board that conventionally has 10x10 squares, but let's say that we want to make the number of rows and columns variable to whatever the we want (this will be helpful for testing as well).
 
@@ -14,9 +17,9 @@ To change the state of the game, a user must attack a square. If that square has
 
 ### Formulating the Classes and Methods
 
-Now that we know the problem, we can start with brainstorming how we want the classes and methods to look like. I always suggest separating the game logic from the UI (user interface) as it makes reading the code much easier and separates the roles of the classes better. 
+Now that we know the problem, we can start with brainstorming how we want the classes and methods to look like. I always suggest separating the game logic from the UI (user interface) as it makes reading the code much easier and separates the roles of the classes better.
 
-Our user will be interacting with the terminal by seeing the state of the game being printed, and writing to the terminal what they want their next move to be. So let's think about creating a user class, and call it `HumanPlayer`. 
+Our user will be interacting with the terminal by seeing the state of the game being printed, and writing to the terminal what they want their next move to be. So let's think about creating a user class, and call it `HumanPlayer`.
 
 **Try to come up with methods that we can define on the `HumanPlayer` based on what the `HumanPlayer` role is.**
 
@@ -34,7 +37,7 @@ Awesome! Now we should have a basic outline of all the classes and methods we ne
 
 The `Board` class's responsibility is to remember the current state of the game and to change the state of the game based on an attack coordinate.
 
-First, things first, we need to initialize the state of the game. When a new instance of `Board` is created, we need to create this state. In this problem, we can represent the state of the board, which is supposed to be a `n x m` grid, in a 2-D array. We also need to populate the grid, or the 2-D array, with ships. For now, let's represent one ship being one square. 
+First, things first, we need to initialize the state of the game. When a new instance of `Board` is created, we need to create this state. In this problem, we can represent the state of the board, which is supposed to be a `n x m` grid, in a 2-D array. We also need to populate the grid, or the 2-D array, with ships. For now, let's represent one ship being one square.
 
 So there are now three questions that come to mind with this. How many rows are there? How many columns are there? And, how many ships are there? These should be determined by the user or the set up of the game, not determined by the `Board` class. So when the `Board` is initialized, we should expect `numRows` and `numCols` and `numShips` parameters to be passed in.
 
@@ -50,9 +53,9 @@ Great! Now we can move onto making methods for the `HumanPlayer` class. We can i
 
 ## `HumanPlayer` class
 
-The `HumanPlayer` class's responsibility is to ask the input from the user through the terminal. The way our `HumanPlayer` can interact with the terminal is by using the built-in node module called `readline`. Whenever a `HumanPlayer` is created, it should instantiate a new `readline` interface and store it on the created instance of `HumanPlayer`. 
+The `HumanPlayer` class's responsibility is to ask the input from the user through the terminal. The way our `HumanPlayer` can interact with the terminal is by using the built-in node module called `readline`. Whenever a `HumanPlayer` is created, it should instantiate a new `readline` interface and store it on the created instance of `HumanPlayer`.
 
-Reminder of how `readline` works: 
+Reminder of how `readline` works:
 
 ```javascript
 const readline = require('readline');
@@ -79,7 +82,7 @@ For now, that's all we really need from the `HumanPlayer` class. We can always g
 
 The `BattleshipGame` class is responsible for handling the flow of the game and integrating the user input and the logic of the game. When a game is first created, we need to know a few things, 1) who is playing the game, 2) how big the grid should be, 3) how many ships the game should have. Let's create a new `HumanPlayer` and a new `Board` when a new `Battleship` game is created and keep track of it so any method in the `BattleshipGame` class can easily access this information.
 
-When the game first start, what do you envision happening first? The game should show you the current state of the game and ask for the user's input. How many times does that happen? This should happen as many times as it takes until the game is over. Let's make a method `BattleshipGame#playTurn` that will do those same repetitive action in one function. How do we initiate the next `playTurn` though? Getting the user input is an asynchronous action and we don't know when we should initiate the next turn. Remember that callback function that we passed into `HumanPlayer#getMove`? This function that gets passed in will initiate the next turn. 
+When the game first start, what do you envision happening first? The game should show you the current state of the game and ask for the user's input. How many times does that happen? This should happen as many times as it takes until the game is over. Let's make a method `BattleshipGame#playTurn` that will do those same repetitive action in one function. How do we initiate the next `playTurn` though? Getting the user input is an asynchronous action and we don't know when we should initiate the next turn. Remember that callback function that we passed into `HumanPlayer#getMove`? This function that gets passed in will initiate the next turn.
 
 Let's create a method that we can pass into `HumanPlayer#getMove`. In this method, we should be initializing the next turn if it's necessary. Ask yourself, is there ever a time where we don't want to play another turn?
 
@@ -96,7 +99,7 @@ B | |h| | |
   ---------
 C | |x| | |
   ---------
-D |x| |h| | 
+D |x| |h| |
   ---------
 ```
 
