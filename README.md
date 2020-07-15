@@ -14,7 +14,7 @@ Project from App Academy, implementation by Juliet Shafto and Andrea Jackson.
     - set a lose condition—right now game doesn't end until player has won
   - two boards so you can play against computer or against other player
 
-### Approach to the problem
+## Approach to the problem
 
 How do we go about designing the classes and methods needed for this game?
 
