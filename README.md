@@ -7,9 +7,11 @@ Project from App Academy, implementation by Juliet Shafto and Andrea Jackson.
   - arguments should be the board height, the board width, and number of targets.
   - ships take up a single square
   - computer sets up a board, and player guesses until they hit every ship
+  - player guesses have to be passed in as array to indicate the target position "[row, column]"
 
 ### Features left to implement:
   - different sized ships
+  - allow a more intuitive way to pass in moves
   - limit on number of turns
     - set a lose condition—right now game doesn't end until player has won
   - two boards so you can play against computer or against other player

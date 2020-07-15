@@ -2,18 +2,14 @@ const readline = require("readline");
 
 class HumanPlayer {
     constructor() {
+        // create the interface that will interact with the user
         this.interface = readline.createInterface(process.stdin, process.stdout);
-      // this.interface =
   }
 
   getMove (cb) {
-    // getMove has a callback parameter
-    // this function is called and passed in the answer
-    ///console.log("humanplayer, getMove", this);
-    this.interface.question("What's your next move?", cb)
-    // answer is gonna be [row, column]
-    // that position is what the user wants to attack
-
+    // pass the answer back to the callback that lets you
+    // process that answer within the main BattleshipGame object
+    this.interface.question("What's your next move? ", cb)
   }
 
 }

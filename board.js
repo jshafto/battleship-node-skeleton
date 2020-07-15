@@ -3,7 +3,7 @@ class Board {
         this.numRows = numRows;
         this.numCols = numCols;
         this.numShips = numShips;
-
+        // create the grid property
         this.grid = this.populateGrid();
     }
 
@@ -26,22 +26,23 @@ class Board {
             let randRow = Math.floor(Math.random() * this.numRows);
             let randCol = Math.floor(Math.random() * this.numCols);
 
+            // while there is already a ship in that position
             while (boardArr[randRow][randCol]) {
+                // keep generating random positions
                 randRow = Math.floor(Math.random() * this.numRows);
                 randCol = Math.floor(Math.random() * this.numCols);
             }
-            // randomly position ships on the grid
+            // once you have a unique position, put a ship in it
             boardArr[randRow][randCol] = "s"
         }
-        // console.table(boardArr);
-        // set this.grid = grid you just made
-        // this.grid = boardArr;
+        // returns grid
         return boardArr;
     }
 
     gameOver() {
-        // check if game is over (all ships have been hit)
-        // return boolean value whether game is over
+        // check if there are any ships left
+        // if you find a ship that has not been hit, return false
+        // if all ships have been hit, return true
         for (let i = 0; i < this.numRows; i++) {
             for (let j = 0; j < this.numCols; j++) {
                 if (this.grid[i][j] === "s") {
@@ -56,24 +57,21 @@ class Board {
     attack(position) {
         // position is an array [row, col]
         let [row, col] = position;
+        // if there is a ship
         if (this.grid[row][col] === "s") {
-            //set location to "h"
+            //set location to a hit
             this.grid[row][col] = "h";
         } else {
+            // set location to a miss
             this.grid[row][col] = "x";
         }
-        // console.table(this.grid);
-        // if there is nothing there
-        // change it to x
-        // change state of grid based on whther the position is
-        // empty or holds a ship
     }
 
     display() {
-        //return string in a visual representation of the grid
-        //as a string
-        // don't include the ships cause otherwise the player
-        // would know where they are
+        // original spec said to return position as string
+        // but as a shortcut, we just create a version of the array
+        // where all the ships are hidden
+        // and rely on console.table to properly render the array into the console
         let dispGrid = this.grid.map(row => {
             return row.map(el => {
                 if (el === "s" || el === null) {
@@ -87,26 +85,5 @@ class Board {
     }
 
 }
-
-
-// let myBoard = new Board(4, 4, 4);
-// myBoard.populateGrid();
-// myBoard.attack([0,2]);
-// myBoard.display();
-// myBoard.attack([1, 3]);
-// myBoard.display();
-// console.log(myBoard.gameOver());
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports.Board = Board

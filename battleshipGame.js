@@ -3,54 +3,45 @@ const { Board } = require("./board.js");
 
 class BattleshipGame {
     constructor(numRows, numCols, numShips) {
-        this.player = new HumanPlayer();
-        this.board = new Board(numRows, numCols, numShips);
-        this.playTurn();
+        this.player = new HumanPlayer(); // create a player object
+        this.board = new Board(numRows, numCols, numShips); // create a board
+        this.playTurn(); // start the game
     }
-
-
 
     playTurn() {
         //show you current state of game
         this.displayStatus();
-        console.log(this.board.gameOver());
 
+        // if the game is not over
         if (!this.board.gameOver()) {
-            // and ask for user input.
-            //let position =
+            // get user input
+            // bind the function to the game context
             this.player.getMove(this.cb.bind(this));
-            //console.log(typeof position)
-            // Remember that callback function that we passed into
-            //HumanPlayer#getMove? This function that gets passed in
-            //will initiate the next turn.
-            //this.playTurn();
         } else {
-            console.log("Game Over!");
+            // if the game is over, let the user know
+            console.log("Game Over! You sunk all the ships.");
+            // and close the interface
             this.player.interface.close();
         }
 
     }
     cb(answer) {
-        // console.log(this);
+        // this function serves as the
+        // take the user's move and parse the string to get an array
         answer = JSON.parse(answer);
+        // attack the indicated position
         this.board.attack(answer);
+        // then play the next turn
         this.playTurn();
-        //return answer;
     }
 
     displayStatus() {
-        //show the state of the game.
-        // print out this.board.display()
+        // use console.table so that the array can be printed nicely
+        // without the added step of transforming to a string first
         console.table(this.board.display());
     }
 
 }
-
-//let myGame = new BattleshipGame(2, 2, 1);
-//myGame.playTurn();
-
-
-
 
 
 module.exports.BattleshipGame = BattleshipGame;
