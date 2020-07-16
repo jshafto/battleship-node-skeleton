@@ -75,7 +75,7 @@ class Board {
         let dispGrid = this.grid.map(row => {
             return row.map(el => {
                 if (el === "s" || el === null) {
-                    return "unknown";
+                    return "?";
                 }
                 return el;
             })
